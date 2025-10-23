@@ -1,0 +1,106 @@
+{
+  "projects_dir": "C:/Users/sinva/Documents/Code Projects",
+  "templates_dir": "~/ProjectTemplates",
+  "backup_dir": "~/ProjectBackups",
+  "monitoring": {
+    "enabled": true,
+    "check_interval": 300,
+    "health_threshold": 70
+  },
+  "git": {
+    "auto_commit": true,
+    "commit_message": "Auto-commit: {timestamp}",
+    "push_on_save": false
+  },
+  "backup": {
+    "enabled": true,
+    "frequency": "daily",
+    "retention_days": 30
+  },
+  "templates": {
+    "python_flask": {
+      "name": "Python Flask Web App",
+      "type": "web",
+      "language": "python",
+      "framework": "flask",
+      "setup_commands": [
+        "python -m venv venv",
+        "source venv/bin/activate",
+        "pip install flask",
+        "pip freeze > requirements.txt"
+      ],
+      "dependencies": [
+        "flask",
+        "python-dotenv"
+      ],
+      "config_files": {
+        "app.py": "from flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef hello():\n    return 'Hello World!'\n\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "requirements.txt": "Flask==2.3.3\npython-dotenv==1.0.0"
+      },
+      "description": "A basic Flask web application template"
+    },
+    "node_express": {
+      "name": "Node.js Express API",
+      "type": "api",
+      "language": "javascript",
+      "framework": "express",
+      "setup_commands": [
+        "npm init -y",
+        "npm install express cors dotenv",
+        "npm install -D nodemon"
+      ],
+      "dependencies": [
+        "express",
+        "cors",
+        "dotenv"
+      ],
+      "config_files": {
+        "package.json": "{\n  \"name\": \"express-api\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Express API\",\n  \"main\": \"server.js\",\n  \"scripts\": {\n    \"start\": \"node server.js\",\n    \"dev\": \"nodemon server.js\"\n  },\n  \"dependencies\": {\n    \"express\": \"^4.18.2\",\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^16.3.1\"\n  },\n  \"devDependencies\": {\n    \"nodemon\": \"^3.0.1\"\n  }\n}",
+        "server.js": "const express = require('express');\nconst cors = require('cors');\nrequire('dotenv').config();\n\nconst app = express();\nconst PORT = process.env.PORT || 3000;\n\napp.use(cors());\napp.use(express.json());\n\napp.get('/', (req, res) => {\n  res.json({ message: 'Hello World!' });\n});\n\napp.listen(PORT, () => {\n  console.log(`Server running on port ${PORT}`);\n});"
+      },
+      "description": "A basic Express.js API template"
+    },
+    "react_app": {
+      "name": "React Frontend",
+      "type": "frontend",
+      "language": "javascript",
+      "framework": "react",
+      "setup_commands": [
+        "npx create-react-app .",
+        "npm install axios",
+        "npm install -D @types/react @types/react-dom"
+      ],
+      "dependencies": [
+        "react",
+        "react-dom",
+        "axios"
+      ],
+      "config_files": {
+        "package.json": "{\n  \"name\": \"react-app\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"dependencies\": {\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\",\n    \"axios\": \"^1.5.0\"\n  },\n  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test\",\n    \"eject\": \"react-scripts eject\"\n  }\n}",
+        "src/App.js": "import React from 'react';\nimport './App.css';\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <header className=\"App-header\">\n        <h1>Hello World!</h1>\n      </header>\n    </div>\n  );\n}\n\nexport default App;"
+      },
+      "description": "A basic React application template"
+    },
+    "rust_cli": {
+      "name": "Rust CLI Tool",
+      "type": "cli",
+      "language": "rust",
+      "framework": "cargo",
+      "setup_commands": [
+        "cargo init",
+        "cargo add clap",
+        "cargo add serde serde_json"
+      ],
+      "dependencies": [
+        "clap",
+        "serde",
+        "serde_json"
+      ],
+      "config_files": {
+        "Cargo.toml": "[package]\nname = \"rust-cli\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\nclap = { version = \"4.4\", features = [\"derive\"] }\nserde = { version = \"1.0\", features = [\"derive\"] }\nserde_json = \"1.0\"",
+        "src/main.rs": "use clap::Parser;\n\n#[derive(Parser)]\n#[command(name = \"rust-cli\")]\n#[command(about = \"A simple CLI tool\")]\nstruct Cli {\n    #[arg(short, long)]\n    name: Option<String>,\n}\n\nfn main() {\n    let cli = Cli::parse();\n    \n    if let Some(name) = cli.name {\n        println!(\"Hello, {}!\", name);\n    } else {\n        println!(\"Hello, World!\");\n    }\n}"
+      },
+      "description": "A basic Rust CLI tool template"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# Cache files
+cache/
+*.pkl
+*.cache
+
+# User-specific cache directory
+~/.dev-project-manager/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
